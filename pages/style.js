@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components'
+import { Button } from 'antd'
 
 // Example
 const Example = styled.h1`
@@ -14,7 +15,7 @@ const Box = styled.div`
   height: ${props => props.size || '100px'};
 `
 
-const Button = styled.button`
+const MyButton = styled.button`
   background: white;
   color: palevioletred;
   font-size: 1em;
@@ -29,7 +30,7 @@ const Button = styled.button`
 `
 
 // Extending styles
-const TomatoButton = Button.extend`
+const TomatoButton = MyButton.extend`
   color: tomato;
   border-color: tomato;
 `
@@ -66,8 +67,8 @@ export default () => <div>
   <Box color="red" />
   <Box size="120px" color="palevioletred" />
 
-  <Button>Default</Button>
-  <Button primary>Primary</Button>
+  <MyButton>Default</MyButton>
+  <MyButton primary>Primary</MyButton>
 
   {/* Extending styles */}
   <TomatoButton>Tomato Button</TomatoButton>
@@ -83,4 +84,6 @@ export default () => <div>
 
   {/* Animations */}
   <Rotate>Hello</Rotate>
+
+  <Button type="primary">Primary</Button>
 </div>
