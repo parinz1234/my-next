@@ -30,7 +30,13 @@ const MyButton = styled.button`
 `
 
 // Extending styles
-const TomatoButton = MyButton.extend`
+// can using with component was create from styled-component
+// const TomatoButton = MyButton.extend`
+//   color: tomato;
+//   border-color: tomato;
+// `
+
+const TomatoButton = styled(MyButton)`
   color: tomato;
   border-color: tomato;
 `
@@ -55,6 +61,10 @@ const Rotate = styled.div`
   animation: ${rotate360} 2s linear infinite;
   padding: 2rem 1rem;
   font-size: 1.2rem;
+`
+
+const CustomButton = styled(Button)`
+  border-color: salmon;
 `
 
 export default () => <div>
@@ -86,4 +96,7 @@ export default () => <div>
   <Rotate>Hello</Rotate>
 
   <Button type="primary">Primary</Button>
+
+  {/* external component */}
+  <CustomButton >Button</CustomButton>
 </div>
