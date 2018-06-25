@@ -1,19 +1,31 @@
-import Head from 'next/head'
 import React from 'react'
-import styled from 'styled-components'
-import { Button } from 'antd'
+import {connect} from 'react-redux'
+import {startClock, serverRenderClock } from '../store'
 
-import 'antd/dist/antd.css'
+import Examples from '../components/Examples'
 
-const Title = styled.h1`
-  color: red;
-  font-size: 50px;
-`
+class Index extends React.Component {
+  static getInitialProps ({ reduxStore, req }) {
+    const isServer = !!req
+    reduxStore.dispatch(serverRenderClock(isServer))
 
-export default () => <div>
-  <Head>
-    <title>Index</title>
-  </Head>
-  <Title>My page</Title>
-  <Button type="primary">Primary</Button>
-</div>
+    return {}
+  }
+
+  componentDidMount () {
+    const {dispatch} = this.props
+    this.timer = startClock(dispatch)
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.timer)
+  }
+
+  render () {
+    return (
+      <Examples />
+    )
+  }
+}
+
+export default connect()(Index)
